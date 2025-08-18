@@ -6,9 +6,9 @@ SMODS.Voucher {
 
   calculate = function(self, card, context)
     if context.hrlr_dice_mod then
-      local die = context.hrlr_other_die
+      local sides = context.hrlr_die_sides
       if context.hrlr_roll_value == 1 then
-        return { hrlr_roll_value = die.ability.extra.sides }
+        return { hrlr_roll_value = sides }
       end
     end
   end

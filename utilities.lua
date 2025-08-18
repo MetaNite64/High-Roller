@@ -72,7 +72,8 @@ function HRLR_UTIL.rollDie(die)
   local modified = {}
   SMODS.calculate_context({
     hrlr_dice_mod = true,
-    hrlr_other_die = die,
+    hrlr_die = die,
+    hrlr_die_sides = die.ability.extra.sides,
     hrlr_roll_value = roll
   }, modified)
   delay(1.5)

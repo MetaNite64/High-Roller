@@ -10,8 +10,8 @@ SMODS.Joker {
 
   calculate = function(self, card, context)
     if context.hrlr_dice_mod then
-      local die = context.hrlr_other_die
-      local new_roll = math.min(context.hrlr_roll_value * 2, die.ability.extra.sides)
+      local sides = context.hrlr_die_sides
+      local new_roll = math.min(context.hrlr_roll_value * 2, sides)
       return {
         message = "Lucky!",
         colour = G.C.GREEN,
