@@ -52,7 +52,7 @@ local eval_card_ref = eval_card
 eval_card = function(card, context)
   local ret, post = eval_card_ref(card, context)
   for _, v in pairs(ret) do
-    if v.hrlr_dice_value then context.hrlr_roll_value = v.hrlr_dice_value end
+    if v.hrlr_roll_value then context.hrlr_roll_value = v.hrlr_roll_value end
   end
   return ret, post
 end
@@ -78,7 +78,7 @@ function HRLR_UTIL.rollDie(die)
   delay(1.5)
   for _, v in ipairs(modified) do
     for _, w in pairs(v) do
-      roll = w.hrlr_dice_value
+      roll = w.hrlr_roll_value
       G.E_MANAGER:add_event(Event({
         trigger = 'after',
         delay = 1.1,

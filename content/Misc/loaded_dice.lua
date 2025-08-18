@@ -8,7 +8,7 @@ SMODS.Voucher {
     if context.hrlr_dice_mod then
       local die = context.hrlr_other_die
       if context.hrlr_roll_value == 1 then
-        return { hrlr_dice_value = die.ability.extra.sides }
+        return { hrlr_roll_value = die.ability.extra.sides }
       end
     end
   end

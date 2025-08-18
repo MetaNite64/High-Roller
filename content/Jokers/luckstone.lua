@@ -15,7 +15,7 @@ SMODS.Joker {
       return {
         message = "Lucky!",
         colour = G.C.GREEN,
-        hrlr_dice_value = new_roll
+        hrlr_roll_value = new_roll
       }
     end
   end
