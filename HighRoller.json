@@ -6,8 +6,8 @@
 	"prefix": "hrlr",
 	"main_file": "HighRoller.lua",
 	"priority": 0,
-	"badge_colour": "C2C2C2",
-	"badge_text_colour": "111111",
+	"badge_colour": "9E1E1E",
+	"badge_text_colour": "FFFFFF",
 	"version": "1.0.0",
 	"dependencies": [
 		"Steamodded (>=1.0.0~BETA-0808b)",
