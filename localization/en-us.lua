@@ -30,7 +30,7 @@ return {
         text = {
           "Balance {C:purple}#1#{} of",
           "your next hand's",
-          "{C:chips}Chips{} and {C:mult}Mult{}."
+          "{C:chips}Chips{} and {C:mult}Mult{}"
         }
       },
       c_hrlr_d12 = {
