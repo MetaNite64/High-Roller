@@ -22,7 +22,7 @@ HRLR_UTIL.Dice {
   calculate = function(self, card, context)
     if context.final_scoring_step and card.ability.extra.rolled then
       SMODS.destroy_cards(card)
-      DICE_UTIL.balanceScore(card.ability.extra.value / 10, card)
+      HRLR_UTIL.balanceScore(card.ability.extra.value / 10, card)
     end
   end
 }
