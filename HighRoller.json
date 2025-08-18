@@ -1,0 +1,15 @@
+{
+	"id": "high_roller",
+	"name": "High Roller",
+	"author": ["Meta"],
+	"description": "Dice: a new consumable type focused on short-term boosts.",
+	"prefix": "hrlr",
+	"main_file": "HighRoller.lua",
+	"priority": 0,
+	"badge_colour": "C2C2C2",
+	"badge_text_colour": "111111",
+	"version": "1.0.0",
+	"dependencies": [
+		"Steamodded (>=1.0.0~BETA-0808b)",
+	]
+}
