@@ -82,7 +82,6 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
         if w.hrlr_rerolls then
           local reroll_table = { current_roll }
           for i = 1, w.hrlr_rerolls do table.insert(reroll_table, HRLR_UTIL.rollDie(card)) end
-          print(reroll_table)
           if w.hrlr_reroll_determiner and type(w.hrlr_reroll_determiner) == "function" then
             current_roll = w.hrlr_reroll_determiner(reroll_table)
           else  -- by default, pick the max roll
@@ -93,22 +92,16 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
     end
 
     card.ability.extra.value = current_roll
-    --HARDCODED FOR NOW
-    G.E_MANAGER:add_event(Event({
-      trigger = 'immediate',
-      func = function()
-        if card.ability.extra.sides == 6 then
-          card.children.center:set_sprite_pos({ x = current_roll, y = 0 })
-        end
-        return true
-      end
-    }))
 
     -- unspotlight card
     G.E_MANAGER:add_event(Event({
       trigger = 'after',
       delay = 1.3,
       func = function()
+        --HARDCODED FOR NOW
+        if card.ability.extra.sides == 6 then
+          card.children.center:set_sprite_pos({ x = current_roll, y = 0 })
+        end
         draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
         return true
       end

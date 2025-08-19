@@ -60,6 +60,7 @@ end
 -- die rolling function
 function HRLR_UTIL.rollDie(die)
   local roll = pseudorandom('roll_die', 1, die.ability.extra.sides)
+  local roll_graphics = roll
   G.E_MANAGER:add_event(Event({
     trigger = 'after',
     delay = 1.3,
@@ -67,7 +68,7 @@ function HRLR_UTIL.rollDie(die)
       die:juice_up(0.8, 0.5)
       -- HARDCODED FOR NOW
       if die.ability.extra.sides == 6 then
-        die.children.center:set_sprite_pos({ x = roll, y = 0 })
+        die.children.center:set_sprite_pos({ x = roll_graphics, y = 0 })
       end
       play_sound('hrlr_roll', 1, 1)
       return true
@@ -84,6 +85,7 @@ function HRLR_UTIL.rollDie(die)
   for _, v in ipairs(modified) do
     for _, w in pairs(v) do
       roll = w.hrlr_roll_value
+      local roll_graphics = roll
       G.E_MANAGER:add_event(Event({
         trigger = 'after',
         delay = 1.1,
@@ -91,7 +93,7 @@ function HRLR_UTIL.rollDie(die)
           die:juice_up(0.8, 0.5)
           --HARDCODED FOR NOW
           if die.ability.extra.sides == 6 then
-            die.children.center:set_sprite_pos({ x = roll, y = 0 })
+            die.children.center:set_sprite_pos({ x = roll_graphics, y = 0 })
           end
           --play_sound('hrlr_dice_mod', 1, 1)
           return true
