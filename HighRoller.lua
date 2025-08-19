@@ -55,7 +55,7 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
   discovered = false,
 
   set_sprites = function(self, card, front)
-    card.children.center:set_sprite_pos({ x = card.ability.extra.value or 0, y = card.config.center.pos.y })
+    card.children.center:set_sprite_pos({ x = card.ability and card.ability.extra.value or 0, y = card.config.center.pos.y })
   end,
   
   can_use = function(self, card)
