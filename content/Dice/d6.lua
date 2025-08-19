@@ -1,6 +1,6 @@
 HRLR_UTIL.Dice {
   key = "d6",
-  atlas = "placeholder",
+  atlas = "dice",
 
   pos = { x = 0, y = 0 },
 

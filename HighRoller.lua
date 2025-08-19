@@ -16,6 +16,13 @@ SMODS.Atlas {
   px = 71, py = 95
 }
 
+-- dice atlas
+SMODS.Atlas {
+  key = "dice",
+  path = "dice.png",
+  px = 71, py = 95
+}
+
 -- dice roll sfx
 SMODS.Sound {
   key = "roll",
@@ -86,6 +93,16 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
     end
 
     card.ability.extra.value = current_roll
+    --HARDCODED FOR NOW
+    G.E_MANAGER:add_event(Event({
+      trigger = 'immediate',
+      func = function()
+        if card.ability.extra.sides == 6 then
+          card.children.center:set_sprite_pos({ x = current_roll, y = 0 })
+        end
+        return true
+      end
+    }))
 
     -- unspotlight card
     G.E_MANAGER:add_event(Event({
