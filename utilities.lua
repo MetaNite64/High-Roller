@@ -68,7 +68,7 @@ function HRLR_UTIL.rollDie(die)
       die:juice_up(0.8, 0.5)
       -- HARDCODED FOR NOW
       if die.ability.extra.sides == 6 then
-        die.children.center:set_sprite_pos({ x = roll_graphics, y = 0 })
+        die.children.center:set_sprite_pos({ x = roll_graphics, y = die.config.center.pos.y })
       end
       play_sound('hrlr_roll', 1, 1)
       return true
@@ -93,7 +93,7 @@ function HRLR_UTIL.rollDie(die)
           die:juice_up(0.8, 0.5)
           --HARDCODED FOR NOW
           if die.ability.extra.sides == 6 then
-            die.children.center:set_sprite_pos({ x = roll_graphics, y = 0 })
+            die.children.center:set_sprite_pos({ x = roll_graphics, y = die.config.center.pos.y })
           end
           --play_sound('hrlr_dice_mod', 1, 1)
           return true

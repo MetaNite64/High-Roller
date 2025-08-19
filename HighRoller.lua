@@ -54,6 +54,10 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
   unlocked = true,
   discovered = false,
 
+  set_sprites = function(self, card, front)
+    card.children.center:set_sprite_pos({ x = card.ability.extra.value or 0, y = card.config.center.pos.y })
+  end,
+  
   can_use = function(self, card)
     return not card.ability.extra.rolled
   end,
@@ -100,7 +104,7 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       func = function()
         --HARDCODED FOR NOW
         if card.ability.extra.sides == 6 then
-          card.children.center:set_sprite_pos({ x = current_roll, y = 0 })
+          card.children.center:set_sprite_pos({ x = current_roll, y = card.config.center.pos.y })
         end
         draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
         return true
