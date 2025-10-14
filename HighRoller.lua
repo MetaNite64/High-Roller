@@ -54,10 +54,11 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
   unlocked = true,
   discovered = false,
 
-  set_sprites = function(self, card, front)
-    card.children.center:set_sprite_pos({ x = card.ability and card.ability.extra.value or 0, y = card.config.center.pos.y })
+  inject = function(self)
+    SMODS.Consumable.inject(self)
+    G.shared_dice[self.key] = SMODS.CanvasSprite(0, 0, G.CARD_W, G.CARD_H)
   end,
-  
+
   can_use = function(self, card)
     return not card.ability.extra.rolled
   end,
@@ -102,10 +103,6 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       trigger = 'after',
       delay = 1.3,
       func = function()
-        --HARDCODED FOR NOW
-        if card.ability.extra.sides == 6 then
-          card.children.center:set_sprite_pos({ x = current_roll, y = card.config.center.pos.y })
-        end
         draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
         return true
       end
@@ -116,6 +113,29 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       hrlr_post_roll = true,
       hrlr_roll_value = card.ability.extra.value
     })
+  end
+}
+
+
+-- DrawStep for the number display on dice cards
+SMODS.DrawStep {
+  key = "hrlr_dice_display",
+  order = 41,
+  func = function(self, layer)
+    if self and self.ability and self.ability.set and self.ability.set == "hrlr_dice" then
+      local sprite = G.shared_dice[self.config.center.key]
+
+      love.graphics.push()
+      love.graphics.origin()
+      sprite.canvas:renderTo(love.graphics.clear, 0, 0, 0, 0)
+      love.graphics.setColor(love.math.colorFromBytes(79, 99, 103))
+      local text = love.graphics.newText(love.graphics.getFont(), self.ability.extra.value or "?")
+      sprite.canvas:renderTo(love.graphics.draw, text, 32, 11, 0, 1)
+      love.graphics.pop()
+
+      sprite.role.draw_major = self
+      sprite:draw_shader("dissolve", nil, nil, nil, self.children.center)
+    end
   end
 }
 
