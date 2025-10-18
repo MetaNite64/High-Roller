@@ -56,7 +56,7 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
 
   inject = function(self)
     SMODS.Consumable.inject(self)
-    G.shared_dice[self.key] = SMODS.CanvasSprite(0, 0, G.CARD_W, G.CARD_H)
+    G.shared_dice[self.key] = SMODS.CanvasSprite(0, 0, G.CARD_W, G.CARD_H, 71, 95, 10)
   end,
 
   can_use = function(self, card)
@@ -116,7 +116,6 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
   end
 }
 
-
 -- DrawStep for the number display on dice cards
 SMODS.DrawStep {
   key = "hrlr_dice_display",
@@ -130,7 +129,7 @@ SMODS.DrawStep {
       sprite.canvas:renderTo(love.graphics.clear, 0, 0, 0, 0)
       love.graphics.setColor(love.math.colorFromBytes(79, 99, 103))
       local text = love.graphics.newText(love.graphics.getFont(), self.ability.extra.value or "?")
-      sprite.canvas:renderTo(love.graphics.draw, text, 32, 11, 0, 1)
+      sprite.canvas:renderTo(love.graphics.draw, text, 320, 110, 0, 10)
       love.graphics.pop()
 
       sprite.role.draw_major = self
