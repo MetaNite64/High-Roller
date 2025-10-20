@@ -72,7 +72,7 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
     -- calculate post_roll context
     SMODS.calculate_context({
       hrlr_post_roll = true,
-      hrlr_roll_value = card.ability.extra.value
+      hrlr_roll_value = current_roll
     })
   end
 }
