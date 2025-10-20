@@ -21,11 +21,15 @@ HRLR_UTIL.Dice {
 
   calculate = function(self, card, context)
     if context.before and card.ability.extra.rolled then
-      if card.ability.extra.value == 1 then SMODS.destroy_cards(card)
-      else card.ability.extra.value = card.ability.extra.value - 1 end
       return {
-        level_up = 1,
+        level_up = card.ability.extra.value,
         message = localize('k_level_up_ex')
+      }
+    end
+    if context.after and card.ability.extra.rolled then
+      SMODS.destroy_cards(card)
+      return {
+        level_up = -card.ability.extra.value
       }
     end
   end

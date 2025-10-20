@@ -4,9 +4,9 @@ return {
       c_hrlr_d4 = {
         name = 'd4',
         text = {
-          "Upgrade level of",
-          "the next {C:attention}#1#{} played",
-          "{C:attention}poker hand(s){}"
+          "Give {C:attention}#1#{} temporary",
+          "level(s) to the next",
+          "played {C:attention}poker hand{}"
         }
       },
       c_hrlr_d6 = {
