@@ -59,13 +59,14 @@ end
 
 -- die rolling function
 function HRLR_UTIL.rollDie(die)
-  local roll = pseudorandom('roll_die', 1, die.ability.extra.sides)
-  local roll_graphics = roll
+  local rolls = {}
+  rolls[1] = pseudorandom('roll_die', 1, die.ability.extra.sides)
   G.E_MANAGER:add_event(Event({
     trigger = 'after',
     delay = 1.3,
     func = function()
       die:juice_up(0.8, 0.5)
+      die.ability.extra.value = rolls[1]
       play_sound('hrlr_roll', 1, 1)
       return true
     end
@@ -75,18 +76,20 @@ function HRLR_UTIL.rollDie(die)
     hrlr_dice_mod = true,
     hrlr_die = die,
     hrlr_die_sides = die.ability.extra.sides,
-    hrlr_roll_value = roll
+    hrlr_roll_value = rolls[1]
   }, modified)
   delay(1.5)
+  local roll_index = 1
   for _, v in ipairs(modified) do
     for _, w in pairs(v) do
-      roll = w.hrlr_roll_value
-      local roll_graphics = roll
+      rolls[#rolls + 1] = w.hrlr_roll_value
       G.E_MANAGER:add_event(Event({
         trigger = 'after',
         delay = 1.1,
         func = function()
+          roll_index = roll_index + 1
           die:juice_up(0.8, 0.5)
+          die.ability.extra.value = rolls[roll_index]
           --play_sound('hrlr_dice_mod', 1, 1)
           return true
         end
@@ -94,7 +97,7 @@ function HRLR_UTIL.rollDie(die)
       SMODS.trigger_effects({ v }, w.card)
     end
   end
-  return roll
+  return rolls[#rolls]
 end
 
 -- chip/mult percentage balancing function

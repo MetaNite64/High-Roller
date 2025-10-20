@@ -96,14 +96,13 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       end
     end
 
-    card.ability.extra.value = current_roll
-
     -- unspotlight card
     G.E_MANAGER:add_event(Event({
       trigger = 'after',
       delay = 1.3,
       func = function()
         draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
+        card.ability.extra.value = current_roll
         return true
       end
     }))
