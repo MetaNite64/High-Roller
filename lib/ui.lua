@@ -17,7 +17,7 @@ SMODS.DrawStep {
       sprite.canvas:renderTo(love.graphics.clear, 0, 0, 0, 0)
       love.graphics.setColor(love.math.colorFromBytes(79, 99, 103))
       local text = love.graphics.newText(love.graphics.getFont(), self.ability.extra.value or "?")
-      sprite.canvas:renderTo(love.graphics.draw, text, 320, 110, 0, 10)
+      sprite.canvas:renderTo(love.graphics.draw, text, 365, 210, 0, 10, 10, text:getWidth()/2, text:getHeight()/2)
       love.graphics.pop()
 
       sprite.role.draw_major = self
