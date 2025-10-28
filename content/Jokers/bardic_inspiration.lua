@@ -1,6 +1,6 @@
 SMODS.Joker {
   key = "bardic_inspiration",
-  atlas = "placeholder",
+  atlas = "jokers",
   pos = { x = 0, y = 0 },
   rarity = 2,
   cost = 6,
