@@ -1,5 +1,18 @@
 return {
   descriptions = {
+    Back = {
+      b_hrlr_gamblers = {
+        name = "Gambler's Deck",
+        text = {
+          "{X:gold,C:white}X#1#{} shop costs",
+          "",
+          "After defeating each",
+          "{C:attention}Blind{}, gain up to",
+          "{C:attention}#2#{} random Dice",
+          "{C:inactive}(Must have room)"
+        }
+      }
+    },
     hrlr_dice = {
       c_hrlr_d4 = {
         name = 'd4',

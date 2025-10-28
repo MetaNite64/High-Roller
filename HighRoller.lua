@@ -3,7 +3,7 @@
 ################## by metanite64 ##################
 #  A mod about dice, a brand new consumable type. #
 #      7 Dice, one associated Spectral card,      #
-#         one voucher set, and 4 Jokers.          #
+#      1 voucher set, 1 deck, and 4 Jokers.       #
 ###################################################
 --]]
 

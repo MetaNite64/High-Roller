@@ -32,7 +32,8 @@ HRLR_UTIL.enabled_bags = {
 HRLR_UTIL.enabled_misc = {
   "d2",
   "advantage",
-  "loaded_dice"
+  "loaded_dice",
+  "gamblers_deck"
 }
 
 -- ## ATLASES ##
