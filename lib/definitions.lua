@@ -58,6 +58,13 @@ SMODS.Atlas {
   px = 71, py = 95
 }
 
+-- boosters atlas
+SMODS.Atlas {
+  key = "boosters",
+  path = "boosters.png",
+  px = 71, py = 95
+}
+
 -- ## SFX ##
 -- dice roll sfx
 SMODS.Sound {
