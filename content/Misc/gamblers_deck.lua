@@ -1,6 +1,6 @@
 SMODS.Back {
   key = "gamblers",
-  atlas = "placeholder",
+  atlas = "misc",
   pos = { x = 0, y = 0 },
   config = { extra = {
     price_hike = 1.5,
