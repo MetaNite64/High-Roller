@@ -49,9 +49,8 @@ return {
       c_hrlr_d12 = {
         name = 'd12',
         text = {
-          "Earn {C:money}$#1#{} at",
-          "the end of the",
-          "next round"
+          "Earn {C:money}$#1#{}",
+          "immediately"
         }
       },
       c_hrlr_d20 = {

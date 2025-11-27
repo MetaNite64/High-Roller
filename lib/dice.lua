@@ -58,16 +58,29 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       end
     end
 
+    -- calculate immediate die effects
+    if card.ability.extra.immediate then
+      G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        delay = 1.3,
+        func = function()
+          card.config.center:effect(card)
+          SMODS.destroy_cards(card)
+          return true
+        end
+      }))
+    else
     -- unspotlight card
-    G.E_MANAGER:add_event(Event({
-      trigger = 'after',
-      delay = 1.3,
-      func = function()
-        draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
-        card.ability.extra.value = current_roll
-        return true
-      end
-    }))
+      G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        delay = 1.3,
+        func = function()
+          draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
+          card.ability.extra.value = current_roll
+          return true
+        end
+      }))
+    end
 
     -- calculate post_roll context
     SMODS.calculate_context({

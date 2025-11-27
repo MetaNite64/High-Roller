@@ -8,7 +8,8 @@ HRLR_UTIL.Dice {
     extra = {
       value = nil,
       sides = 12,
-      rolled = false
+      rolled = false,
+      immediate = true
     }
   },
 
@@ -19,11 +20,7 @@ HRLR_UTIL.Dice {
     }}
   end,
 
-  calc_dollar_bonus = function(self, card)
-    if card.ability.extra.rolled then
-      local dollar_bonus = card.ability.extra.value
-      SMODS.destroy_cards(card)
-      return dollar_bonus
-    end
+  effect = function(self, card, context)
+    ease_dollars(card.ability.extra.value)
   end
 }
