@@ -30,62 +30,17 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
   end,
 
   use = function(self, card, area)
-    -- spotlight card, base roll
-    draw_card(G.consumeables, G.play, 1, 'up', true, card, nil, mute)
-    local current_roll = HRLR_UTIL.rollDie(card)
-    card.ability.extra.rolled = true
+    local roll = HRLR_UTIL.useDie(card)
 
-    -- check for rerolls
-    local reroll_effects = {}
-    SMODS.calculate_context({
-      hrlr_add_rerolls = true,
-      hrlr_other_die = card,
-      hrlr_roll_value = current_roll
-    }, reroll_effects)
-
-    -- do rerolls
-    for _, v in ipairs(reroll_effects) do
-      for _, w in pairs(v) do
-        if w.hrlr_rerolls then
-          local reroll_table = { current_roll }
-          for i = 1, w.hrlr_rerolls do table.insert(reroll_table, HRLR_UTIL.rollDie(card)) end
-          if w.hrlr_reroll_determiner and type(w.hrlr_reroll_determiner) == "function" then
-            current_roll = w.hrlr_reroll_determiner(reroll_table)
-          else  -- by default, pick the max roll
-            current_roll = math.max(unpack(reroll_table))
-          end
-        end
-      end
-    end
-
-    -- calculate immediate die effects
-    if card.ability.extra.immediate then
-      G.E_MANAGER:add_event(Event({
-        trigger = 'after',
-        delay = 1.3,
-        func = function()
-          card.config.center:effect(card)
-          SMODS.destroy_cards(card)
-          return true
-        end
-      }))
-    else
     -- unspotlight card
-      G.E_MANAGER:add_event(Event({
-        trigger = 'after',
-        delay = 1.3,
-        func = function()
-          draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
-          card.ability.extra.value = current_roll
-          return true
-        end
-      }))
-    end
-
-    -- calculate post_roll context
-    SMODS.calculate_context({
-      hrlr_post_roll = true,
-      hrlr_roll_value = current_roll
-    })
+    G.E_MANAGER:add_event(Event({
+      trigger = 'after',
+      delay = 1.3,
+      func = function()
+        draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
+        card.ability.extra.value = roll
+        return true
+      end
+    }))
   end
 }

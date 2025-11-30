@@ -8,8 +8,7 @@ HRLR_UTIL.Dice {
     extra = {
       value = nil,
       sides = 12,
-      rolled = false,
-      immediate = true
+      rolled = false
     }
   },
 
@@ -20,7 +19,17 @@ HRLR_UTIL.Dice {
     }}
   end,
 
-  effect = function(self, card, context)
-    ease_dollars(card.ability.extra.value)
+  use = function(self, card, area)
+    HRLR_UTIL.useDie(card)
+
+    G.E_MANAGER:add_event(Event({
+      trigger = "after",
+      delay = 1.3,
+      func = function()
+        ease_dollars(card.ability.extra.value)
+        SMODS.destroy_cards(card)
+        return true
+      end
+    }))
   end
 }

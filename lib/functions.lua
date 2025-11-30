@@ -58,6 +58,45 @@ function HRLR_UTIL.rollDie(die)
   return rolls[#rolls]
 end
 
+-- standard Use behavior for dice
+function HRLR_UTIL.useDie(card)
+  -- spotlight card, base roll
+  draw_card(G.consumeables, G.play, 1, 'up', true, card, nil, mute)
+  local current_roll = HRLR_UTIL.rollDie(card)
+  card.ability.extra.rolled = true
+
+  -- check for rerolls
+  local reroll_effects = {}
+  SMODS.calculate_context({
+    hrlr_add_rerolls = true,
+    hrlr_other_die = card,
+    hrlr_roll_value = current_roll
+  }, reroll_effects)
+
+  -- do rerolls
+  for _, v in ipairs(reroll_effects) do
+    for _, w in pairs(v) do
+      if w.hrlr_rerolls then
+        local reroll_table = { current_roll }
+        for i = 1, w.hrlr_rerolls do table.insert(reroll_table, HRLR_UTIL.rollDie(card)) end
+        if w.hrlr_reroll_determiner and type(w.hrlr_reroll_determiner) == "function" then
+          current_roll = w.hrlr_reroll_determiner(reroll_table)
+        else  -- by default, pick the max roll
+          current_roll = math.max(unpack(reroll_table))
+        end
+      end
+    end
+  end
+
+  -- calculate post_roll context
+  SMODS.calculate_context({
+    hrlr_post_roll = true,
+    hrlr_roll_value = current_roll
+  })
+
+  return current_roll
+end
+
 -- chip/mult percentage balancing function
 -- shoutouts to paperback, which in turn took this from all in jest i think
 function HRLR_UTIL.balanceScore(percent, card)
