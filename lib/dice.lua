@@ -18,7 +18,10 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
 
   inject = function(self)
     SMODS.Consumable.inject(self)
-    G.shared_dice[self.key] = SMODS.CanvasSprite(0, 0, G.CARD_W, G.CARD_H, 71, 95, 10)
+  end,
+
+  set_ability = function(self, card, initial, delay_sprites)
+    card.render_sprite = SMODS.CanvasSprite(0, 0, G.CARD_W, G.CARD_H, 71, 95, 10)
   end,
 
   can_use = function(self, card)
@@ -39,6 +42,7 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       func = function()
         draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
         card.ability.extra.value = roll
+        card.ability.extra.render_value = roll
         return true
       end
     }))

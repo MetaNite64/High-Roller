@@ -24,7 +24,7 @@ function HRLR_UTIL.rollDie(die)
     delay = 1.3,
     func = function()
       die:juice_up(0.8, 0.5)
-      die.ability.extra.value = rolls[1]
+      die.ability.extra.render_value = rolls[1]
       play_sound('hrlr_roll', 1, 1)
       return true
     end
@@ -47,7 +47,7 @@ function HRLR_UTIL.rollDie(die)
         func = function()
           roll_index = roll_index + 1
           die:juice_up(0.8, 0.5)
-          die.ability.extra.value = rolls[roll_index]
+          die.ability.extra.render_value = rolls[roll_index]
           --play_sound('hrlr_dice_mod', 1, 1)
           return true
         end
