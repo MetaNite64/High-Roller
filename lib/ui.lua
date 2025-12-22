@@ -15,7 +15,7 @@ love.resize = function(w, h)
         definition = HRLR_UTIL.dice_ui_function(v.role.draw_major.ability.extra), -- EXTREMELY EVIL
         config = { major = G.ROOM_ATTACH, type = "cm", offset = {
           x = (0.5 * v.canvas:getWidth() / factor) - (G.ROOM_ATTACH.T.w / 2),
-          y = (0.5 * v.canvas:getHeight() / factor) - (G.ROOM_ATTACH.T.h / 2)
+          y = (0.225 * v.canvas:getHeight() / factor) - (G.ROOM_ATTACH.T.h / 2)
         } }
       })
       v.hrlr_uibox.draw = function() end
@@ -25,9 +25,9 @@ end
 
 -- Dice UIBox
 function HRLR_UTIL.dice_ui_function(die_table)
-  return { n = G.UIT.ROOT, config = { align = "cm", colour = G.C.RED }, nodes = {
-    { n = G.UIT.R, config = { align = "cm", colour = G.C.BLUE }, nodes = {
-      { n = G.UIT.C, config = { align = "cm", colour = G.C.GREEN }, nodes = {
+  return { n = G.UIT.ROOT, config = { align = "cm", colour = G.C.CLEAR }, nodes = {
+    { n = G.UIT.R, config = { align = "cm" }, nodes = {
+      { n = G.UIT.C, config = { align = "cm" }, nodes = {
         { n = G.UIT.T, config = {
           ref_table = die_table,
           ref_value = "render_value",
@@ -56,7 +56,7 @@ SMODS.DrawStep {
           definition = HRLR_UTIL.dice_ui_function(self.ability.extra),
           config = { major = G.ROOM_ATTACH, type = "cm", offset = {
             x = (0.5 * sprite.canvas:getWidth() / factor) - (G.ROOM_ATTACH.T.w / 2),
-            y = (0.5 * sprite.canvas:getHeight() / factor) - (G.ROOM_ATTACH.T.h / 2)
+            y = (0.225 * sprite.canvas:getHeight() / factor) - (G.ROOM_ATTACH.T.h / 2)
           } }
         })
         sprite.hrlr_uibox.draw = function() end
