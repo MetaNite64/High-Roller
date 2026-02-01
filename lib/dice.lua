@@ -21,19 +21,22 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
   end,
 
   set_sprites = function(self, card, front)
-    sprite_table = {
-      canvasW = 71, canvasH = 95,
-      text_offset = { x = 36, y = 21 },
-      text_colour = G.C.UI.TEXT_DARK,
-      text_width = 30,
-      text_height = 20,
-      text = "?"
-    }
-    if card.ability then
-      sprite_table.ref_table = card.ability.extra
-      sprite_table.ref_value = "value"
-    end
-    card.children.canvas_text = SMODS.CanvasSprite(sprite_table)
+    G.E_MANAGER:add_event(Event({
+      blockable = false,
+      func = function()
+        card.children.canvas_text = SMODS.CanvasSprite {
+          canvasW = 71, canvasH = 95,
+          text_offset = { x = 36, y = 21 },
+          text_colour = G.C.UI.TEXT_DARK,
+          text_width = 30,
+          text_height = 20,
+          ref_table = card.ability.extra,
+          ref_value = "value",
+          text = "?"
+        }
+        return true
+      end
+    }))
   end,
 
   can_use = function(self, card)
