@@ -6,9 +6,7 @@ HRLR_UTIL.Dice {
 
   config = {
     extra = {
-      render_value = "?",
-      sides = 4,
-      rolled = false
+      sides = 4
     }
   },
 

@@ -20,8 +20,20 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
     SMODS.Consumable.inject(self)
   end,
 
-  set_ability = function(self, card, initial, delay_sprites)
-    card.render_sprite = SMODS.CanvasSprite(0, 0, G.CARD_W, G.CARD_H, 71, 95, 10)
+  set_sprites = function(self, card, front)
+    sprite_table = {
+      canvasW = 71, canvasH = 95,
+      text_offset = { x = 36, y = 21 },
+      text_colour = G.C.UI.TEXT_DARK,
+      text_width = 30,
+      text_height = 20,
+      text = "?"
+    }
+    if card.ability then
+      sprite_table.ref_table = card.ability.extra
+      sprite_table.ref_value = "value"
+    end
+    card.children.canvas_text = SMODS.CanvasSprite(sprite_table)
   end,
 
   can_use = function(self, card)
@@ -42,7 +54,6 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       func = function()
         draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
         card.ability.extra.value = roll
-        card.ability.extra.render_value = roll
         return true
       end
     }))
