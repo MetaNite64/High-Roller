@@ -9,7 +9,6 @@
 
 assert(SMODS.load_file("lib/definitions.lua"))()
 assert(SMODS.load_file("lib/functions.lua"))()
-assert(SMODS.load_file("lib/ui.lua"))()
 assert(SMODS.load_file("lib/dice.lua"))()
 
 

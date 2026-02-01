@@ -85,3 +85,9 @@ SMODS.Sound {
   key = "flip_coin",
   path = "flip_coin.ogg"
 }
+
+-- ## COLORS ##
+HRLR_UTIL.colors = {
+  DICE_BG = G.C.WHITE,
+  DICE_TEXT = G.C.UI.TEXT_DARK,
+}
