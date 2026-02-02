@@ -26,7 +26,7 @@ return {
         name = 'd6',
         text = {
           "Earn {X:mult,C:white}X#1#{} Mult",
-          "for your next hand",
+          "for the next hand",
           "{C:attention}after{} scoring"
         }
       },
@@ -34,7 +34,7 @@ return {
         name = 'd8',
         text = {
           "Earn {X:chips,C:white}X#1#{} Chips",
-          "for your next hand",
+          "for the next hand",
           "{C:attention}after{} scoring"
         }
       },
@@ -42,7 +42,7 @@ return {
         name = 'd10',
         text = {
           "Balance {C:purple}#1#{} of",
-          "your next hand's",
+          "the next hand's",
           "{C:chips}Chips{} and {C:mult}Mult{}"
         }
       },
@@ -57,7 +57,7 @@ return {
         name = 'd20',
         text = {
           "Earn {C:mult}+#1#{} Mult",
-          "for your next hand",
+          "for the next hand",
           "{C:attention}before{} scoring"
         }
       },
@@ -65,7 +65,7 @@ return {
         name = 'd100',
         text = {
           "Earn {C:chips}+#1#{} Chips",
-          "for your next hand",
+          "for the next hand",
           "{C:attention}before{} scoring"
         }
       }
