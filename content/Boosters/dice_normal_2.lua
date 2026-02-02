@@ -1,7 +1,8 @@
 SMODS.Booster {
   key = 'dice_normal_2',
-  atlas = 'placeholder',
-  pos = { x = 0, y = 0 },
+  atlas = 'boosters',
+  pos = { x = 1, y = 0 },
+  pixel_size = { h = 74 },
   config = {
     extra = 2,
     choose = 1
