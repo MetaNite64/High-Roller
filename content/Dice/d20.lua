@@ -1,8 +1,8 @@
 HRLR_UTIL.Dice {
   key = "d20",
-  atlas = "placeholder",
+  atlas = "dice",
 
-  pos = { x = 0, y = 0 },
+  pos = { x = 5, y = 0 },
 
   config = {
     extra = {
