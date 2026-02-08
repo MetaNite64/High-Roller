@@ -140,10 +140,25 @@ return {
       c_hrlr_d2 = {
         name = 'd2',
         text = {
-          "Flip a coin. Heads",
-          "creates {C:tarot}The Soul{},",
-          "Tails creates a {C:planet}Black Hole{}",
-          "{C:inactive}(Must have room){}"
+          {
+            "This coin can be",
+            "flipped once per round",
+            "{C:inactive}(#1#){}"
+          },
+          {
+            "{C:attention}Heads{}",
+            "This card gains {C:attention}+1{}",
+            "to all Die rolls",
+            "{C:inactive}(Currently +#2#)"
+          },
+          {
+            "{C:attention}Tails{}",
+            "The next Die roll is",
+            "guaranteed to be the",
+            "{C:attention}maximum value{}.",
+            "{C:attention}Reset{} this card to +0",
+            "{C:inactive}(#3#){}"
+          }
         }
       }
     },
