@@ -2,8 +2,8 @@ SMODS.Consumable {
   key = "d2",
   set = "Spectral",
   
-  atlas = "placeholder",
-  pos = { x = 0, y = 0 },
+  atlas = "misc",
+  pos = { x = 1, y = 0 },
 
   hidden = true,
   soul_set = "hrlr_dice",
@@ -36,6 +36,7 @@ SMODS.Consumable {
         card.ability.extra.roll_bonus = heads and card.ability.extra.roll_bonus + 1 or 0
         card.ability.extra.tails_active = not heads
         card.children.canvas_text.text = "+" .. card.ability.extra.roll_bonus
+        card.children.center:set_sprite_pos { x = heads and 1 or 2, y = 0 }
         return true
       end
     }))
