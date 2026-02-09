@@ -1,7 +1,7 @@
 SMODS.Consumable {
   key = "d2",
   set = "Spectral",
-  
+
   atlas = "misc",
   pos = { x = 1, y = 0 },
 
@@ -56,7 +56,7 @@ SMODS.Consumable {
     if context.hrlr_dice_mod then
       if card.ability.extra.roll_bonus > 0 then
         return {
-          message = "Bonus!",
+          message = localize("k_hrlr_bonus_ex"),
           colour = G.C.SECONDARY_SET.Spectral,
           hrlr_roll_value = math.min(context.hrlr_roll_value + card.ability.extra.roll_bonus, context.hrlr_die_sides)
         }
@@ -64,7 +64,7 @@ SMODS.Consumable {
       if card.ability.extra.tails_active then
         card.ability.extra.tails_active = false
         return {
-          message = "Crit!",
+          message = localize("k_hrlr_crit_ex"),
           colour = G.C.SECONDARY_SET.Spectral,
           hrlr_roll_value = context.hrlr_die_sides
         }
@@ -94,9 +94,9 @@ SMODS.Consumable {
 
   loc_vars = function(self, info_queue, card)
     return { vars = {
-      card.ability.extra.flipped and "Inactive..." or "Active!",
+      card.ability.extra.flipped and localize("k_hrlr_inactive") or localize("k_hrlr_active_ex"),
       card.ability.extra.roll_bonus,
-      card.ability.extra.tails_active and "Active!" or "Inactive..."
+      card.ability.extra.tails_active and localize("k_hrlr_active_ex") or localize("k_hrlr_inactive")
     } }
   end
 }

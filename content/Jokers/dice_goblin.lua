@@ -21,7 +21,7 @@ SMODS.Joker {
       }))
 
       return {
-        message = localize('dice_goblin_trigger_ex'),
+        message = localize('k_hrlr_dice_ex'),
         colour = G.C.BLACK
       }
     end

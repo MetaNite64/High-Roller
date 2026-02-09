@@ -189,8 +189,13 @@ return {
 
       k_plus_dice_1 = "+1 Die",
       k_plus_dice_2 = "+2 Dice",
+      k_hrlr_inactive = "Inactive...",
+      k_hrlr_active_ex = "Active!",
 
-      dice_goblin_trigger_ex = "Dice!"
+      k_hrlr_dice_ex = "Dice!",
+      k_hrlr_lucky_ex = "Lucky!",
+      k_hrlr_bonus_ex = "Bonus!",
+      k_hrlr_crit_ex = "Crit!"
     }
   }
 }
