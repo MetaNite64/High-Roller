@@ -16,9 +16,11 @@ eval_card = function(card, context)
 end
 
 -- die rolling function
-function HRLR_UTIL.rollDie(die)
+function HRLR_UTIL.rollDie(die, min_mod, max_mod)
+  if not min_mod then local min_mod = 0 end
+  if not max_mod then local max_mod = 0 end
   local rolls = {}
-  rolls[1] = pseudorandom('roll_die', 1, die.ability.extra.sides)
+  rolls[1] = pseudorandom('roll_die', 1 + min_mod, die.ability.extra.sides + max_mod)
   G.E_MANAGER:add_event(Event({
     trigger = 'after',
     delay = 1.3,
@@ -60,9 +62,25 @@ end
 
 -- standard Use behavior for dice
 function HRLR_UTIL.useDie(card)
+  -- check for boundary modifiers
+  local min_mod = 0
+  local max_mod = 0
+  local bound_mods = {}
+  SMODS.calculate_context({
+    hrlr_modify_bounds = true,
+    hrlr_die = card,
+    hrlr_die_sides = card.ability.extra.sides
+  }, bound_mods)
+  for _, v in ipairs(bound_mods) do
+    for _, w in pairs(v) do
+      min_mod = min_mod + (w.hrlr_min_mod or 0)
+      max_mod = max_mod + (w.hrlr_max_mod or 0)
+    end
+  end
+
   -- spotlight card, base roll
   draw_card(G.consumeables, G.play, 1, 'up', true, card, nil, mute)
-  local current_roll = HRLR_UTIL.rollDie(card)
+  local current_roll = HRLR_UTIL.rollDie(card, min_mod, max_mod)
   card.ability.extra.rolled = true
 
   -- check for rerolls
@@ -78,7 +96,7 @@ function HRLR_UTIL.useDie(card)
     for _, w in pairs(v) do
       if w.hrlr_rerolls then
         local reroll_table = { current_roll }
-        for i = 1, w.hrlr_rerolls do table.insert(reroll_table, HRLR_UTIL.rollDie(card)) end
+        for i = 1, w.hrlr_rerolls do table.insert(reroll_table, HRLR_UTIL.rollDie(card, min_mod, max_mod)) end
         if w.hrlr_reroll_determiner and type(w.hrlr_reroll_determiner) == "function" then
           current_roll = w.hrlr_reroll_determiner(reroll_table)
         else  -- by default, pick the max roll
