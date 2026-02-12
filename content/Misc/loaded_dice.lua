@@ -5,11 +5,8 @@ SMODS.Voucher {
   requires = { 'v_hrlr_advantage' },
 
   calculate = function(self, card, context)
-    if context.hrlr_dice_mod then
-      local sides = context.hrlr_die_sides
-      if context.hrlr_roll_value == 1 then
-        return { hrlr_roll_value = sides }
-      end
+    if context.hrlr_modify_bounds then
+        return { hrlr_min_mod = math.floor(0.5 * context.hrlr_die_sides) }
     end
   end
 }

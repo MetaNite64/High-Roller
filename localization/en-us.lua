@@ -174,9 +174,8 @@ return {
       v_hrlr_loaded_dice = {
         name = "Loaded Dice",
         text = {
-          "If a Die rolls its",
-          "{C:attention}minimum{} value, replace",
-          "it with its {C:attention}maximum{} value"
+          "Dice always roll in the",
+          "{C:attention}upper half{} of their range"
         }
       }
     }
