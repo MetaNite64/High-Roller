@@ -35,7 +35,7 @@ SMODS.Consumable {
         play_sound("hrlr_flip_coin")
         card.ability.extra.roll_bonus = heads and card.ability.extra.roll_bonus + 1 or 0
         card.ability.extra.tails_active = not heads
-        card.children.canvas_text.text = "+" .. card.ability.extra.roll_bonus
+        card.canvas_text.text = "+" .. card.ability.extra.roll_bonus
         card.children.center:set_sprite_pos { x = heads and 1 or 2, y = 0 }
         return true
       end
@@ -79,7 +79,7 @@ SMODS.Consumable {
   G.E_MANAGER:add_event(Event({
     blockable = false,
     func = function()
-      card.children.canvas_text = SMODS.CanvasSprite {
+      card.canvas_text = SMODS.CanvasSprite {
         canvasW = 71, canvasH = 95,
         text_offset = { x = 36, y = 21 },
         text_colour = G.C.UI.TEXT_DARK,

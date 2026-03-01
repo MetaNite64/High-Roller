@@ -24,7 +24,7 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
     G.E_MANAGER:add_event(Event({
       blockable = false,
       func = function()
-        card.children.canvas_text = SMODS.CanvasSprite {
+        card.canvas_text = SMODS.CanvasSprite {
           canvasW = 71, canvasH = 95,
           text_offset = { x = 36, y = 21 },
           text_colour = G.C.UI.TEXT_DARK,
