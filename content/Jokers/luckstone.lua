@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = "luckstone",
-  atlas = "placeholder",
-  pos = { x = 0, y = 0 },
+  atlas = "jokers",
+  pos = { x = 3, y = 0 },
   rarity = 3,
   cost = 7,
   blueprint_compat = true,
