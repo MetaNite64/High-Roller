@@ -8,7 +8,7 @@ return {
           "",
           "After defeating each",
           "{C:attention}Blind{}, gain up to",
-          "{C:attention}#2#{} random Dice",
+          "{C:attention}#2#{} random {C:attention}Dice{}",
           "{C:inactive}(Must have room)"
         }
       }
@@ -75,7 +75,7 @@ return {
         name = "Bardic Inspiration",
         text = {
           "Create up to 2 random",
-          "Dice before the {C:attention}final{}",
+          "{C:attention}Dice{} before the {C:attention}final{}",
           "{C:attention}hand{} of the round",
           "{C:inactive}(Must have room){}"
         }
@@ -83,14 +83,14 @@ return {
       j_hrlr_dice_goblin = {
         name = "Dice Goblin",
         text = {
-          "Add a free Dice Bag",
+          "Add a free {C:attention}Dice Bag{}",
           "to every shop"
         }
       },
       j_hrlr_fuzzy_dice = {
         name = "Fuzzy Dice",
         text = {
-          "Every time you roll a Die,",
+          "Every time you roll a {C:attention}Die{},",
           "this Joker gains the roll's",
           "value as {C:chips}+Chips{}",
           "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips){}"
@@ -99,8 +99,8 @@ return {
       j_hrlr_luckstone = {
         name = "Luckstone",
         text = {
-          "{X:default,C:white}X2{} to all Dice rolls",
-          "{C:inactive}(Capped at the Die's maximum)"
+          "{X:default,C:white}X2{} to all {C:attention}Dice{} rolls",
+          "{C:inactive}(Capped at the {C:attention}Die's{C:inactive} maximum)"
         }
       }
     },
@@ -118,21 +118,21 @@ return {
         name = "Dice Bag",
         text = {
           "Choose {C:attention}#1#{} of",
-          "up to {C:attention}#2#{} Dice"
+          "up to {C:attention}#2# Dice{}"
         }
       },
       p_hrlr_dice_jumbo = {
         name = "Jumbo Dice Bag",
         text = {
           "Choose {C:attention}#1#{} of",
-          "up to {C:attention}#2#{} Dice"
+          "up to {C:attention}#2# Dice{}"
         }
       },
       p_hrlr_dice_mega = {
         name = "Mega Dice Bag",
         text = {
           "Choose {C:attention}#1#{} of",
-          "up to {C:attention}#2#{} Dice"
+          "up to {C:attention}#2# Dice{}"
         }
       }
     },
@@ -148,12 +148,12 @@ return {
           {
             "{C:attention}Heads{}",
             "This card gains {C:attention}+1{}",
-            "to all Die rolls",
+            "to all {C:attention}Die{} rolls",
             "{C:inactive}(Currently +#2#)"
           },
           {
             "{C:attention}Tails{}",
-            "The next Die roll is",
+            "The next {C:attention}Die{} roll is",
             "guaranteed to be the",
             "{C:attention}maximum value{}.",
             "{C:attention}Reset{} this card to +0",
@@ -166,7 +166,7 @@ return {
       v_hrlr_advantage = {
         name = "Advantage",
         text = {
-          "All Dice roll",
+          "All {C:attention}Dice{} roll",
           "themselves twice, and",
           "pick the {C:attention}higher{} roll"
         }
@@ -174,7 +174,7 @@ return {
       v_hrlr_loaded_dice = {
         name = "Loaded Dice",
         text = {
-          "Dice always roll in the",
+          "{C:attention}Dice{} always roll in the",
           "{C:attention}upper half{} of their range"
         }
       }
