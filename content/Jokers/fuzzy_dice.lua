@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = "fuzzy_dice",
-  atlas = "placeholder",
-  pos = { x = 0, y = 0 },
+  atlas = "jokers",
+  pos = { x = 2, y = 0 },
   rarity = 1,
   cost = 5,
   blueprint_compat = true,

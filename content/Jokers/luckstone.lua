@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = "luckstone",
-  atlas = "placeholder",
-  pos = { x = 0, y = 0 },
+  atlas = "jokers",
+  pos = { x = 3, y = 0 },
   rarity = 3,
   cost = 7,
   blueprint_compat = true,
@@ -13,7 +13,7 @@ SMODS.Joker {
       local sides = context.hrlr_die_sides
       local new_roll = math.min(context.hrlr_roll_value * 2, sides)
       return {
-        message = "Lucky!",
+        message = localize("k_hrlr_lucky_ex"),
         colour = G.C.GREEN,
         hrlr_roll_value = new_roll
       }

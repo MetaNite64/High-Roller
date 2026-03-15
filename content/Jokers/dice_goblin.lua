@@ -1,7 +1,7 @@
 SMODS.Joker {
   key = "dice_goblin",
-  atlas = "placeholder",
-  pos = { x = 0, y = 0 },
+  atlas = "jokers",
+  pos = { x = 1, y = 0 },
   rarity = 2,
   cost = 7,
   blueprint_compat = true,
@@ -21,7 +21,7 @@ SMODS.Joker {
       }))
 
       return {
-        message = localize('dice_goblin_trigger_ex'),
+        message = localize('k_hrlr_dice_ex'),
         colour = G.C.BLACK
       }
     end

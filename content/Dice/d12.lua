@@ -1,14 +1,12 @@
 HRLR_UTIL.Dice {
   key = "d12",
-  atlas = "placeholder",
+  atlas = "dice",
 
-  pos = { x = 0, y = 0 },
+  pos = { x = 4, y = 0 },
 
   config = {
     extra = {
-      value = nil,
-      sides = 12,
-      rolled = false
+      sides = 12
     }
   },
 
@@ -19,11 +17,18 @@ HRLR_UTIL.Dice {
     }}
   end,
 
-  calc_dollar_bonus = function(self, card)
-    if card.ability.extra.rolled then
-      local dollar_bonus = card.ability.extra.value
-      SMODS.destroy_cards(card)
-      return dollar_bonus
-    end
+  use = function(self, card, area)
+    local roll = HRLR_UTIL.useDie(card)
+
+    G.E_MANAGER:add_event(Event({
+      trigger = "after",
+      delay = 1.3,
+      func = function()
+        card.ability.extra.value = roll
+        ease_dollars(roll)
+        SMODS.destroy_cards(card)
+        return true
+      end
+    }))
   end
 }

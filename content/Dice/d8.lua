@@ -1,14 +1,12 @@
 HRLR_UTIL.Dice {
   key = "d8",
-  atlas = "placeholder",
+  atlas = "dice",
 
-  pos = { x = 0, y = 0 },
+  pos = { x = 2, y = 0 },
 
   config = {
     extra = {
-      value = nil,
-      sides = 8,
-      rolled = false
+      sides = 8
     }
   },
 

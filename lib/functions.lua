@@ -1,45 +1,3 @@
-HRLR_UTIL = {}
-
--- Joker table
-HRLR_UTIL.enabled_jokers = {
-  "bardic_inspiration",
-  "dice_goblin",
-  "fuzzy_dice",
-  "luckstone"
-}
-
--- Dice table
-HRLR_UTIL.enabled_dice = {
-  "d4",
-  "d6",
-  "d8",
-  "d10",
-  "d12",
-  "d20",
-  "d100"
-}
-
--- Dice Bag table
-HRLR_UTIL.enabled_bags = {
-  "dice_normal_1",
-  "dice_normal_2",
-  "dice_jumbo",
-  "dice_mega"
-}
-
--- Misc table
-HRLR_UTIL.enabled_misc = {
-  "d2",
-  "advantage",
-  "loaded_dice"
-}
-
--- color definitions
-HRLR_UTIL.colors = {
-  DICE_BG = G.C.WHITE,
-  DICE_TEXT = G.C.UI.TEXT_DARK,
-}
-
 -- function to load other files
 function HRLR_UTIL.loadItems(names, path)
   for i = 1, #names do
@@ -58,19 +16,19 @@ eval_card = function(card, context)
 end
 
 -- die rolling function
-function HRLR_UTIL.rollDie(die)
-  local roll = pseudorandom('roll_die', 1, die.ability.extra.sides)
-  local roll_graphics = roll
+function HRLR_UTIL.rollDie(die, min_mod, max_mod)
+  if not min_mod then local min_mod = 0 end
+  if not max_mod then local max_mod = 0 end
+  local rolls = {}
+  rolls[1] = pseudorandom('roll_die', 1 + min_mod, die.ability.extra.sides + max_mod)
   G.E_MANAGER:add_event(Event({
     trigger = 'after',
     delay = 1.3,
     func = function()
       die:juice_up(0.8, 0.5)
-      -- HARDCODED FOR NOW
-      if die.ability.extra.sides == 6 then
-        die.children.center:set_sprite_pos({ x = roll_graphics, y = die.config.center.pos.y })
-      end
-      play_sound('hrlr_roll', 1, 1)
+      die.ability.extra.value = rolls[1]
+      local percent = pseudorandom("roll_sfx") * 0.2
+      play_sound('hrlr_roll', 0.9 + percent, 1)
       return true
     end
   }))
@@ -79,30 +37,85 @@ function HRLR_UTIL.rollDie(die)
     hrlr_dice_mod = true,
     hrlr_die = die,
     hrlr_die_sides = die.ability.extra.sides,
-    hrlr_roll_value = roll
+    hrlr_roll_value = rolls[1]
   }, modified)
   delay(1.5)
+  local roll_index = 1
   for _, v in ipairs(modified) do
     for _, w in pairs(v) do
-      roll = w.hrlr_roll_value
-      local roll_graphics = roll
+      rolls[#rolls + 1] = w.hrlr_roll_value
       G.E_MANAGER:add_event(Event({
         trigger = 'after',
         delay = 1.1,
         func = function()
+          roll_index = roll_index + 1
           die:juice_up(0.8, 0.5)
-          --HARDCODED FOR NOW
-          if die.ability.extra.sides == 6 then
-            die.children.center:set_sprite_pos({ x = roll_graphics, y = die.config.center.pos.y })
-          end
-          --play_sound('hrlr_dice_mod', 1, 1)
+          die.ability.extra.value = rolls[roll_index]
+          local percent = pseudorandom("roll_mod_sfx") * 0.2
+          play_sound('hrlr_dice_mod', 0.9 + percent, 0.7)
           return true
         end
       }))
       SMODS.trigger_effects({ v }, w.card)
     end
   end
-  return roll
+  return rolls[#rolls]
+end
+
+-- standard Use behavior for dice
+function HRLR_UTIL.useDie(card)
+  -- check for boundary modifiers
+  local min_mod = 0
+  local max_mod = 0
+  local bound_mods = {}
+  SMODS.calculate_context({
+    hrlr_modify_bounds = true,
+    hrlr_die = card,
+    hrlr_die_sides = card.ability.extra.sides
+  }, bound_mods)
+  for _, v in ipairs(bound_mods) do
+    for _, w in pairs(v) do
+      min_mod = min_mod + (w.hrlr_min_mod or 0)
+      max_mod = max_mod + (w.hrlr_max_mod or 0)
+    end
+  end
+
+  -- spotlight card, base roll
+  draw_card(G.consumeables, G.play, 1, 'up', true, card, nil, mute)
+  local current_roll = HRLR_UTIL.rollDie(card, min_mod, max_mod)
+  card.ability.extra.rolled = true
+
+  -- check for rerolls
+  local reroll_effects = {}
+  SMODS.calculate_context({
+    hrlr_add_rerolls = true,
+    hrlr_other_die = card,
+    hrlr_roll_value = current_roll
+  }, reroll_effects)
+
+  -- do rerolls
+  for _, v in ipairs(reroll_effects) do
+    for _, w in pairs(v) do
+      if w.hrlr_rerolls then
+        local reroll_table = { current_roll }
+        for i = 1, w.hrlr_rerolls do table.insert(reroll_table, HRLR_UTIL.rollDie(card, min_mod, max_mod)) end
+        if w.hrlr_reroll_determiner and type(w.hrlr_reroll_determiner) == "function" then
+          current_roll = w.hrlr_reroll_determiner(reroll_table)
+        else  -- by default, pick the max roll
+          current_roll = math.max(unpack(reroll_table))
+        end
+      end
+    end
+  end
+
+  -- calculate post_roll context
+  SMODS.calculate_context({
+    hrlr_post_roll = true,
+    hrlr_other_die = card,
+    hrlr_roll_value = current_roll
+  })
+
+  return current_roll
 end
 
 -- chip/mult percentage balancing function
@@ -169,4 +182,19 @@ function HRLR_UTIL.balanceScore(percent, card)
     end
   }))
   delay(0.6)
+end
+
+-- mod calculate, purely for unlocking the dude
+SMODS.current_mod.calculate = function(self, context)
+  if context.hrlr_post_roll then
+    if context.hrlr_other_die.config.center.key == "c_hrlr_d20" and context.hrlr_roll_value == 20 then
+      G.E_MANAGER:add_event(Event({
+        trigger = "after",
+        func = function()
+          unlock_card(G.P_CENTERS["v_hrlr_loaded_dice"])
+          return true
+        end
+      }))
+    end
+  end
 end
