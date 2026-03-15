@@ -27,7 +27,7 @@ function HRLR_UTIL.rollDie(die, min_mod, max_mod)
     func = function()
       die:juice_up(0.8, 0.5)
       die.ability.extra.value = rolls[1]
-      percent = pseudorandom("roll_sfx") * 0.2
+      local percent = pseudorandom("roll_sfx") * 0.2
       play_sound('hrlr_roll', 0.9 + percent, 1)
       return true
     end
@@ -51,7 +51,8 @@ function HRLR_UTIL.rollDie(die, min_mod, max_mod)
           roll_index = roll_index + 1
           die:juice_up(0.8, 0.5)
           die.ability.extra.value = rolls[roll_index]
-          --play_sound('hrlr_dice_mod', 1, 1)
+          local percent = pseudorandom("roll_mod_sfx") * 0.2
+          play_sound('hrlr_dice_mod', 0.9 + percent, 0.7)
           return true
         end
       }))

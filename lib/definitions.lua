@@ -79,6 +79,12 @@ SMODS.Sound {
   path = "roll.ogg"
 }
 
+-- modify roll sfx
+SMODS.Sound {
+  key = "dice_mod",
+  path = "dice_mod.ogg"
+}
+
 -- coin flip sfx
 -- shoutouts to hakita "ultrakill" hakita
 SMODS.Sound {
