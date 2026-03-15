@@ -65,6 +65,13 @@ SMODS.Atlas {
   px = 71, py = 95
 }
 
+-- mod icon
+SMODS.Atlas {
+  key = "modicon",
+  path = "modicon.png",
+  px = 34, py = 34
+}
+
 -- ## SFX ##
 -- dice roll sfx
 SMODS.Sound {
