@@ -32,7 +32,8 @@ SMODS.Consumable {
       delay = 1.3,
       func = function()
         card:juice_up(0.8, 0.5)
-        play_sound("hrlr_flip_coin")
+        local percent = pseudorandom("coin_sfx") * 0.2
+        play_sound("hrlr_flip_coin", 0.9 + percent)
         card.ability.extra.roll_bonus = heads and card.ability.extra.roll_bonus + 1 or 0
         card.ability.extra.tails_active = not heads
         card.canvas_text.text = "+" .. card.ability.extra.roll_bonus
