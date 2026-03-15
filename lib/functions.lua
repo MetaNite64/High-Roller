@@ -185,8 +185,6 @@ end
 -- mod calculate, purely for unlocking the dude
 SMODS.current_mod.calculate = function(self, context)
   if context.hrlr_post_roll then
-    print(context.hrlr_other_die.config.center.key)
-    print(context.hrlr_roll_value)
     if context.hrlr_other_die.config.center.key == "c_hrlr_d20" and context.hrlr_roll_value == 20 then
       G.E_MANAGER:add_event(Event({
         trigger = "after",
