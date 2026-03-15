@@ -37,13 +37,6 @@ HRLR_UTIL.enabled_misc = {
 }
 
 -- ## ATLASES ##
--- placeholder atlas
-SMODS.Atlas {
-  key = "placeholder",
-  path = "placeholder.png",
-  px = 71, py = 95
-}
-
 -- dice atlas
 SMODS.Atlas {
   key = "dice",

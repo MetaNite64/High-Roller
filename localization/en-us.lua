@@ -176,6 +176,10 @@ return {
         text = {
           "{C:attention}Dice{} always roll in the",
           "{C:attention}upper half{} of their range"
+        },
+        unlock = {
+          "Roll a {C:attention}20",
+          "on a {C:attention}d20"
         }
       }
     }
