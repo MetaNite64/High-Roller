@@ -10,6 +10,14 @@ SMODS.ConsumableType {
   collection_rows = { 4, 3 }
 }
 
+SMODS.UndiscoveredSprite {
+  key = "dice",
+  prefix_config = { key = true },
+  atlas = "undiscovered",
+  pos = { x = 0, y = 0 },
+  no_overlay = true
+}
+
 -- dice consumables extend SMODS.Consumable
 HRLR_UTIL.Dice = SMODS.Consumable:extend {
   set = "hrlr_dice",

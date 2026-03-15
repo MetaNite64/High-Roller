@@ -44,6 +44,13 @@ SMODS.Atlas {
   px = 71, py = 95
 }
 
+-- undiscovered dice atlas
+SMODS.Atlas {
+  key = "undiscovered",
+  path = "undiscovered.png",
+  px = 71, py = 95
+}
+
 -- jokers atlas
 SMODS.Atlas {
   key = "jokers",
