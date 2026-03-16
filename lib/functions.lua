@@ -89,7 +89,7 @@ function HRLR_UTIL.useDie(card)
   local reroll_effects = {}
   SMODS.calculate_context({
     hrlr_add_rerolls = true,
-    hrlr_other_die = card,
+    hrlr_die = card,
     hrlr_roll_value = current_roll
   }, reroll_effects)
 
@@ -111,7 +111,7 @@ function HRLR_UTIL.useDie(card)
   -- calculate post_roll context
   SMODS.calculate_context({
     hrlr_post_roll = true,
-    hrlr_other_die = card,
+    hrlr_die = card,
     hrlr_roll_value = current_roll
   })
 
@@ -187,7 +187,7 @@ end
 -- mod calculate, purely for unlocking the dude
 SMODS.current_mod.calculate = function(self, context)
   if context.hrlr_post_roll then
-    if context.hrlr_other_die.config.center.key == "c_hrlr_d20" and context.hrlr_roll_value == 20 then
+    if context.hrlr_die.config.center.key == "c_hrlr_d20" and context.hrlr_roll_value == 20 then
       G.E_MANAGER:add_event(Event({
         trigger = "after",
         func = function()
