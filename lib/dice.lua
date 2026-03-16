@@ -63,7 +63,7 @@ HRLR_UTIL.Dice = SMODS.Consumable:extend {
       trigger = 'after',
       delay = 1.3,
       func = function()
-        draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
+        draw_card(G.play, G.consumeables, 1, 'up', false, card, nil, mute)
         card.ability.extra.value = roll
         return true
       end
