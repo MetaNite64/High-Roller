@@ -46,7 +46,7 @@ SMODS.Consumable {
       trigger = 'after',
       delay = 0.9,
       func = function()
-        draw_card(G.play, G.consumeables, 1, 'up', true, card, nil, mute)
+        draw_card(G.play, G.consumeables, 1, 'up', false, card, nil, mute)
         return true
       end
     }))
