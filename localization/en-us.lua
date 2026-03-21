@@ -99,8 +99,8 @@ return {
       j_hrlr_luckstone = {
         name = "Luckstone",
         text = {
-          "{X:default,C:white}X2{} to all {C:attention}Dice{} rolls",
-          "{C:inactive}(Capped at the {C:attention}Die's{C:inactive} maximum)"
+          "{C:attention}Dice{} can roll up to",
+          "{X:default,C:white}X#1#{} their {C:attention}side count{}"
         }
       }
     },
