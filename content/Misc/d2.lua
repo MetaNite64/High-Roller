@@ -80,13 +80,14 @@ SMODS.Consumable {
   G.E_MANAGER:add_event(Event({
     blockable = false,
     func = function()
+      local color = (card.edition and card.edition.key == "e_negative") and G.C.UI.TEXT_LIGHT or G.C.UI.TEXT_DARK
       card.canvas_text = SMODS.CanvasSprite {
         canvasW = 71, canvasH = 95,
         text_offset = { x = 36, y = 21 },
-        text_colour = G.C.UI.TEXT_DARK,
+        text_colour = color,
         text_width = 30,
         text_height = 20,
-        text = "+0"
+        text = "+" .. card.ability.extra.roll_bonus
       }
       return true
     end

@@ -8,14 +8,18 @@ SMODS.Joker {
   eternal_compat = true,
   perishable_compat = true,
 
+  config = { extra = {
+    scale = 0.5
+  }},
+
+  loc_vars = function(self, info_queue, card)
+    return { vars = { 1 + card.ability.extra.scale } }
+  end,
+
   calculate = function(self, card, context)
-    if context.hrlr_dice_mod then
-      local sides = context.hrlr_die_sides
-      local new_roll = math.min(context.hrlr_roll_value * 2, sides)
+    if context.hrlr_modify_bounds then
       return {
-        message = localize("k_hrlr_lucky_ex"),
-        colour = G.C.GREEN,
-        hrlr_roll_value = new_roll
+        hrlr_max_mod = context.hrlr_die_sides * card.ability.extra.scale
       }
     end
   end

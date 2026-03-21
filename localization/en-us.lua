@@ -7,9 +7,8 @@ return {
           "{X:gold,C:white}X#1#{} shop costs",
           "",
           "After defeating each",
-          "{C:attention}Blind{}, gain up to",
-          "{C:attention}#2#{} random {C:attention}Dice{}",
-          "{C:inactive}(Must have room)"
+          "{C:attention}Blind{}, create {C:attention}#2#{}",
+          "random {C:dark_edition}Negative{} {C:attention}Dice{}"
         }
       }
     },
@@ -75,8 +74,8 @@ return {
         name = "Bardic Inspiration",
         text = {
           "Create up to 2 random",
-          "{C:attention}Dice{} before the {C:attention}final{}",
-          "{C:attention}hand{} of the round",
+          "{C:attention}Dice{} if the {C:attention}Blind{} is not",
+          "beaten and {C:attention}1 hand{} remains",
           "{C:inactive}(Must have room){}"
         }
       },
@@ -91,16 +90,16 @@ return {
         name = "Fuzzy Dice",
         text = {
           "Every time you roll a {C:attention}Die{},",
-          "this Joker gains the roll's",
-          "value as {C:chips}+Chips{}",
+          "this Joker gains {C:attention}half{} the",
+          "roll's value as {C:chips}+Chips{}",
           "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips){}"
         }
       },
       j_hrlr_luckstone = {
         name = "Luckstone",
         text = {
-          "{X:default,C:white}X2{} to all {C:attention}Dice{} rolls",
-          "{C:inactive}(Capped at the {C:attention}Die's{C:inactive} maximum)"
+          "{C:attention}Dice{} can roll up to",
+          "{X:default,C:white}X#1#{} their {C:attention}side count{}"
         }
       }
     },
