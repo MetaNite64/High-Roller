@@ -10,7 +10,7 @@ SMODS.Booster {
   group_key = 'k_hrlr_dice_bag',
   kind = 'hrlr_dice',
   select_card = 'consumeables',
-  cost = 4,
+  cost = 8,
 
   ease_background_colour = function(self)
     ease_colour(G.C.DYN_UI.MAIN, HRLR_UTIL.colors.DICE_BG)
