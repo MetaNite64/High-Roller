@@ -74,8 +74,8 @@ return {
         name = "Bardic Inspiration",
         text = {
           "Create up to 2 random",
-          "{C:attention}Dice{} before the {C:attention}final{}",
-          "{C:attention}hand{} of the round",
+          "{C:attention}Dice{} if the {C:attention}Blind{} is not",
+          "beaten and {C:attention}1 hand{} remains",
           "{C:inactive}(Must have room){}"
         }
       },
