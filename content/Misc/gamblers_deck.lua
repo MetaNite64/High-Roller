@@ -21,16 +21,12 @@ SMODS.Back {
   calculate = function(self, back, context)
     if context.round_eval then
       for i = 1, 2 do
-        if #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit then
-          G.GAME.consumeable_buffer = G.GAME.consumeable_buffer + 1
-          G.E_MANAGER:add_event(Event({
-            func = function()
-              SMODS.add_card { set = "hrlr_dice", key_append = "b_hrlr_gamblers" }
-              G.GAME.consumeable_buffer = 0
-              return true
-            end
-          }))
-        end
+        G.E_MANAGER:add_event(Event({
+          func = function()
+            SMODS.add_card { set = "hrlr_dice", key_append = "b_hrlr_gamblers", edition = "e_negative" }
+            return true
+          end
+        }))
       end
     end
   end

@@ -7,9 +7,8 @@ return {
           "{X:gold,C:white}X#1#{} shop costs",
           "",
           "After defeating each",
-          "{C:attention}Blind{}, gain up to",
-          "{C:attention}#2#{} random {C:attention}Dice{}",
-          "{C:inactive}(Must have room)"
+          "{C:attention}Blind{}, create {C:attention}#2#{}",
+          "random {C:dark_edition}Negative{} {C:attention}Dice{}"
         }
       }
     },
