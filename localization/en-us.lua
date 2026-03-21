@@ -91,8 +91,8 @@ return {
         name = "Fuzzy Dice",
         text = {
           "Every time you roll a {C:attention}Die{},",
-          "this Joker gains the roll's",
-          "value as {C:chips}+Chips{}",
+          "this Joker gains {C:attention}half{} the",
+          "roll's value as {C:chips}+Chips{}",
           "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips){}"
         }
       },
