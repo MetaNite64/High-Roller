@@ -202,12 +202,15 @@ end
 -- card:set_edition hook, to fix canvassprite colors
 local cse_ref = Card.set_edition
 Card.set_edition = function(self, edition, immediate, silent, delay)
-  local old_edition = self.edition and self.edition.key
   cse_ref(self, edition, immediate, silent, delay)
-  if self.config.center.set == "hrlr_dice" or self.config.center.key == "c_hrlr_d2" then
-    if edition ~= old_edition then
-      local color = (edition == "e_negative" and G.C.UI.TEXT_LIGHT or G.C.UI.TEXT_DARK)
-      self.canvas_text.text_colour = color
+  G.E_MANAGER:add_event(Event({
+    trigger = "after",
+    func = function()
+      if self.config.center.set == "hrlr_dice" or self.config.center.key == "c_hrlr_d2" then
+        local color = ((self.edition and self.edition.key == "e_negative") and G.C.UI.TEXT_LIGHT or G.C.UI.TEXT_DARK)
+        self.canvas_text.text_colour = color
+      end
+      return true
     end
-  end
+  }))
 end
