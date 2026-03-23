@@ -7,6 +7,7 @@ SMODS.ConsumableType {
   secondary_colour = HRLR_UTIL.colors.DICE_BG,
   shop_rate = 0,
   default = 'c_hrlr_d6',
+  select_card = "consumeables",
   collection_rows = { 4, 3 }
 }
 
