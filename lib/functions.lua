@@ -198,3 +198,19 @@ SMODS.current_mod.calculate = function(self, context)
     end
   end
 end
+
+-- card:set_edition hook, to fix canvassprite colors
+local cse_ref = Card.set_edition
+Card.set_edition = function(self, edition, immediate, silent, delay)
+  cse_ref(self, edition, immediate, silent, delay)
+  G.E_MANAGER:add_event(Event({
+    trigger = "after",
+    func = function()
+      if self.config.center.set == "hrlr_dice" or self.config.center.key == "c_hrlr_d2" then
+        local color = ((self.edition and self.edition.key == "e_negative") and G.C.UI.TEXT_LIGHT or G.C.UI.TEXT_DARK)
+        self.canvas_text.text_colour = color
+      end
+      return true
+    end
+  }))
+end

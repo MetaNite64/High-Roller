@@ -8,6 +8,8 @@ SMODS.Consumable {
   hidden = true,
   soul_set = "hrlr_dice",
 
+  select_card = "consumeables",
+
   config = { extra = {
     flipped = false,
     roll_bonus = 0,
