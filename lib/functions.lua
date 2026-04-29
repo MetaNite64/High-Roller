@@ -10,7 +10,7 @@ local eval_card_ref = eval_card
 eval_card = function(card, context)
   local ret, post = eval_card_ref(card, context)
   for _, v in pairs(ret) do
-    if v.hrlr_roll_value then context.hrlr_roll_value = v.hrlr_roll_value end
+    if type(v) == "table" and v.hrlr_roll_value then context.hrlr_roll_value = v.hrlr_roll_value end
   end
   return ret, post
 end
