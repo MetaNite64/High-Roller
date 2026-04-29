@@ -36,7 +36,7 @@ function HRLR_UTIL.rollDie(die, min_mod, max_mod)
   SMODS.calculate_context({
     hrlr_dice_mod = true,
     hrlr_die = die,
-    hrlr_die_sides = die.ability.extra.sides,
+    hrlr_die_sides = die.ability.extra.sides + max_mod,
     hrlr_roll_value = rolls[1]
   }, modified)
   delay(1.5)
