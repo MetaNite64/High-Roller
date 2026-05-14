@@ -10,6 +10,7 @@
 assert(SMODS.load_file("lib/definitions.lua"))()
 assert(SMODS.load_file("lib/functions.lua"))()
 assert(SMODS.load_file("lib/dice.lua"))()
+assert(SMODS.load_file("lib/playlog.lua"))()
 
 
 HRLR_UTIL.loadItems(HRLR_UTIL.enabled_dice, "content/Dice")

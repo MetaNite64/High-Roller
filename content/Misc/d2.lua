@@ -29,6 +29,7 @@ SMODS.Consumable {
     local flip = pseudorandom('flip_coin')
     card.ability.extra.flipped = true
     local heads = (flip >= 0.5)
+    PlayLog.log { type = "hrlr_coin_flipped", card = card, heads = heads }
     G.E_MANAGER:add_event(Event({
       trigger = 'after',
       delay = 1.3,

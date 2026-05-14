@@ -21,6 +21,7 @@ function HRLR_UTIL.rollDie(die, min_mod, max_mod)
   if not max_mod then local max_mod = 0 end
   local rolls = {}
   rolls[1] = pseudorandom('roll_die', 1 + min_mod, die.ability.extra.sides + max_mod)
+  PlayLog.log { type = "hrlr_die_rolled", card = die, roll = rolls[1] }
   G.E_MANAGER:add_event(Event({
     trigger = 'after',
     delay = 1.3,
@@ -44,6 +45,7 @@ function HRLR_UTIL.rollDie(die, min_mod, max_mod)
   for _, v in ipairs(modified) do
     for _, w in pairs(v) do
       rolls[#rolls + 1] = w.hrlr_roll_value
+      PlayLog.log { type = "hrlr_die_mod", card = w.card, old_roll = rolls[#rolls - 1], new_roll = rolls[#rolls] }
       G.E_MANAGER:add_event(Event({
         trigger = 'after',
         delay = 1.1,
@@ -98,6 +100,7 @@ function HRLR_UTIL.useDie(card)
     for _, w in pairs(v) do
       if w.hrlr_rerolls then
         local reroll_table = { current_roll }
+        PlayLog.log { type = "hrlr_die_reroll", card = w.card, rerolls = w.hrlr_rerolls }
         for i = 1, w.hrlr_rerolls do table.insert(reroll_table, HRLR_UTIL.rollDie(card, min_mod, max_mod)) end
         if w.hrlr_reroll_determiner and type(w.hrlr_reroll_determiner) == "function" then
           current_roll = w.hrlr_reroll_determiner(reroll_table)
