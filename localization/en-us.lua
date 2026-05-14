@@ -73,7 +73,7 @@ return {
       j_hrlr_bardic_inspiration = {
         name = "Bardic Inspiration",
         text = {
-          "Create up to 2 random",
+          "Create up to {C:attention}2{} random",
           "{C:attention}Dice{} if the {C:attention}Blind{} is not",
           "beaten and {C:attention}1 hand{} remains",
           "{C:inactive}(Must have room){}"
