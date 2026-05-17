@@ -73,7 +73,7 @@ return {
       j_hrlr_bardic_inspiration = {
         name = "Bardic Inspiration",
         text = {
-          "Create up to 2 random",
+          "Create up to {C:attention}2{} random",
           "{C:attention}Dice{} if the {C:attention}Blind{} is not",
           "beaten and {C:attention}1 hand{} remains",
           "{C:inactive}(Must have room){}"
@@ -198,6 +198,12 @@ return {
       k_hrlr_lucky_ex = "Lucky!",
       k_hrlr_bonus_ex = "Bonus!",
       k_hrlr_crit_ex = "Crit!"
+    },
+    playlog = {
+      die_rolled = "#1# rolled a {C:attention}#2#{}",
+      coin_flipped = "#1# landed on {C:attention}#2#{}",
+      die_mod = "#1# modified the die roll from {C:attention}#2#{} to {C:attention}#3#{}",
+      die_reroll = "#1# caused the die to reroll {C:attention}#2# time(s){}"
     }
   }
 }

@@ -29,5 +29,27 @@ SMODS.Joker {
         return { message = localize('k_plus_dice_' .. spawned), colour = G.C.BLACK }
       end
     end
+  end,
+
+  joker_display_def = function(JokerDisplay)
+    return {
+      text = {
+        { text = "+" },
+        { ref_table = "card.joker_display_values", ref_value = "count" }
+      },
+      calc_function = function(card)
+        card.joker_display_values.active = (G.GAME.current_round.hands_left == 2 and G.STATE == G.STATES.SELECTING_HAND)
+                                           or (G.GAME.current_round.hands_left == 1 and G.STATE == G.STATES.HAND_PLAYED)
+        local free_space = G.consumeables.config.card_limit - #G.consumeables.cards
+        card.joker_display_values.count = math.min(2, math.max(0, free_space))
+      end,
+      style_function = function(card, text, reminder_text, extra)
+        if text and text.children[1] and text.children[2] then
+          local color = card.joker_display_values.active and G.C.SECONDARY_SET.hrlr_dice or G.C.UI.TEXT_INACTIVE
+          text.children[1].config.colour = color
+          text.children[2].config.colour = color
+        end
+      end
+    }
   end
 }
